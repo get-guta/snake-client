@@ -10,8 +10,16 @@ const connect = function () {
     // code that does something when the connection is first established
     console.log("Ended cuz you idled");
   });
+  conn.on("connect", () =>{
+    console.log("Successfully connected to game server");
+  })
+  conn.on("connect", () =>{
+   conn.write('Name: GLA');
+    
+  })
 
 return conn; 
+
 };
 
 module.exports = connect;
