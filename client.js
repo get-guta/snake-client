@@ -1,4 +1,5 @@
-const net = require('net')
+const net = require('net');
+const { clearInterval } = require('timers');
 const connect = function () {
   const conn = net.createConnection({
     host: '192.168.0.27',
@@ -10,15 +11,21 @@ const connect = function () {
     // code that does something when the connection is first established
     console.log("Ended cuz you idled");
   });
-  conn.on("connect", () =>{
+
+  conn.on("connect", () => {
     console.log("Successfully connected to game server");
-  })
-  conn.on("connect", () =>{
-   conn.write('Name: GLA');
-    
+    setTimeout(() => { conn.write('Name: GLA'); }, 50)
+    setTimeout(() => { conn.write('Move: up'); }, 100)
+    setTimeout(() => { conn.write('Move: down'); }, 150)
+    setTimeout(() => { conn.write('Move: left'); }, 200)
+    setTimeout(() => { conn.write('Move: right'); }, 250)
+
+
+    //up = setInterval(() => {conn.write('Move: up')}, 500)
+    //clearInterval(up);
   })
 
-return conn; 
+  return conn;
 
 };
 
